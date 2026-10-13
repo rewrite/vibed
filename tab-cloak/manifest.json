@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Tab Cloak",
+  "version": "1.0.0",
+  "description": "Disguise a tab's title and icon. Clone them from a URL, or set your own.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "tab-cloak@tabcloak.extension",
+      "strict_min_version": "115.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "permissions": ["storage", "scripting", "tabs"],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "scripts": ["background.js"],
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Tab Cloak",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    }
+  },
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ]
+}
